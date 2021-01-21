@@ -32,8 +32,8 @@ class register(View):
         confPassword = request.POST.get('conf_password')
 
         if password != confPassword:
-            err = {'error_message': "Passwords don't match. Please Try Again."}
-            return render(request, 'student/stureg.html', err)
+            err = {'error_message': "Password don't match. Please Try Again."}
+            return render(request, 'register.html', err)
 
         try:
             user = User.objects.create_user(username, email, password, first_name=first_name,
@@ -41,7 +41,7 @@ class register(View):
             user.save()
         except:
             err = {}
-            err['error_message'] = "Account with this Username or Email already Exists."
+            err['error_message'] = "Account with this Username or Email already exists."
             return render(request, template_name, err)
 
         try:
@@ -49,7 +49,7 @@ class register(View):
             studentData.save()
         except:
             err = {}
-            err['error_message'] = "Account with this Username already Exists."
+            err['error_message'] = "Account with this Username already exists."
             return render(request, template_name, err)
 
         my_group = Group.objects.get(name='student_group')
@@ -72,7 +72,7 @@ class Login(View):
         if user is not None:
             if user.is_active:
                 login(request, user)
-                userr = Group.objects.filter(user=user)
+                user = Group.objects.filter(user=user)
                 group = user.groups.all()[0].name
                 if group == 'faculty_group':
                     return redirect('teacher:facultyHome')
