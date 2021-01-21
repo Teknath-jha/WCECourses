@@ -30,7 +30,7 @@
                     Profile
                 </span>
                 {{ error_message }}
-                <div class="wrap-input100 validate-input m-b-16" data-validate = "Valid email is required: ex@abc.xyz">
+                <!-- <div class="wrap-input100 validate-input m-b-16" data-validate = "Valid email is required: ex@abc.xyz">
                     <input class="input100" type="text" name="username" placeholder="{{ user.username }}" disabled>
                     <span class="focus-input100"></span>
                     <span class="symbol-input100">
@@ -38,15 +38,82 @@
                             <path d="M1 2.828c.885-.37 2.154-.769 3.388-.893 1.33-.134 2.458.063 3.112.752v9.746c-.935-.53-2.12-.603-3.213-.493-1.18.12-2.37.461-3.287.811V2.828zm7.5-.141c.654-.689 1.782-.886 3.112-.752 1.234.124 2.503.523 3.388.893v9.923c-.918-.35-2.107-.692-3.287-.81-1.094-.111-2.278-.039-3.213.492V2.687zM8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783z"/>
                           </svg>
                     </span>
-                </div>
+                </div> -->
 
-                <div class="wrap-input100 validate-input m-b-16" data-validate = "Password is required">
-                    <input class="input100" type="password" name="password" placeholder="Password">
-                    <span class="focus-input100"></span>
-                    <span class="symbol-input100">
-                        <span class="lnr lnr-lock"></span>
-                    </span>
-                </div>
+                
+					<div class="wrap-input100 validate-input m-b-16" data-validate = "Valid username is required">
+						<input class="input100" type="text" name="username" placeholder="{{user.username}}" disabled>
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-user" aria-hidden="true"></i>
+						</span>
+					</div>
+
+                    <div class="wrap-input100 validate-input m-b-16" data-validate = "First name is required">
+						<input class="input100" type="text" name="first_name" placeholder="{{user.first_name}}" required>
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-user" aria-hidden="true"></i>
+						</span>
+					</div>
+
+
+					<div class="wrap-input100 validate-input m-b-16" data-validate = "Last name is required">
+						<input class="input100" type="text" name="last_name" placeholder="{{user.last_name}}" required>
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-user" aria-hidden="true"></i>
+						</span>
+					</div>
+
+					<div class="wrap-input100 validate-input m-b-16" data-validate = "Designation">
+						
+						<select class="input100" type="" name="designation" placeholder="{{user.designation}}"  required>
+							<option value="">Select your Designation</option>
+							<option value="student">Student</option>
+							<option value="teacher">Teacher</option>
+							<option value="faculty">Faculty</option>
+							<option value="other">Other</option>
+						  </select>
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-user-circle-o" aria-hidden="true"></i>
+						</span>
+					</div>
+
+					<!-- ------------------------------------------------- -->
+					<div class="wrap-input100 validate-input m-b-16" data-validate = "Valid email is required: ex@abc.xyz">
+						<input class="input100" type="text" name="email" placeholder="{{user.email}}" disabled>
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<span class="lnr lnr-envelope"></span>
+						</span>
+					</div>
+
+					<div class="wrap-input100 validate-input m-b-16" data-validate = "Valid contact is required">
+						<input class="input100" type="text" name="phoneNumber" placeholder="{{user.contact}}" required>
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-phone" aria-hidden="true"></i>
+						</span>
+					</div>
+					<div class="wrap-input100 validate-input m-b-16" data-validate = "Required">
+						<input class="input100" type="message" name="address" placeholder="{{user.address}}" required>
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-address-card-o" aria-hidden="true"></i>
+						</span>
+					</div>
+
+					<div class="wrap-input100 validate-input m-b-16" data-validate = "Required">
+						<input class="input100" type="text" name="organisation" placeholder="{{user.organisation}}" required>
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-sitemap" aria-hidden="true"></i>
+						</span>
+					</div>
+
+					
                 
                 <div class="container-login100-form-btn p-t-25">
                     <button class="login100-form-btn" type="submit">
