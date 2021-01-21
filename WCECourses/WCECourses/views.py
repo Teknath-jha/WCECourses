@@ -83,4 +83,4 @@ class Login(View):
 
 def logout_user(request):
     logout(request)
-    return render(request, 'landingPage.html', {})
+    return redirect('landingPage')
