@@ -94,12 +94,11 @@
 				<form class="login100-form validate-form" action="" method="post" enctype="multipart/form-data">
 					{% csrf_token %}	
 					<span class="login100-form-title p-b-55">
-						Course Registration 
+						Student Registration 
 					</span>
-
-
+						<p style="color:#d33f8d">{{error_message}}</p>
 					<div class="wrap-input100 validate-input m-b-16" data-validate = "Valid username is required">
-						<input class="input100" type="text" name="username" placeholder="Username">
+						<input class="input100" type="text" name="username" placeholder="Username" required>
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">
 							<i class="fa fa-user" aria-hidden="true"></i>
@@ -108,7 +107,7 @@
 
 
 					<div class="wrap-input100 validate-input m-b-16" data-validate = "First name is required">
-						<input class="input100" type="text" name="firstname" placeholder="First name">
+						<input class="input100" type="text" name="first_name" placeholder="First name" required>
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">
 							<i class="fa fa-user" aria-hidden="true"></i>
@@ -117,19 +116,16 @@
 
 
 					<div class="wrap-input100 validate-input m-b-16" data-validate = "Last name is required">
-						<input class="input100" type="text" name="lastname" placeholder="Last name">
+						<input class="input100" type="text" name="last_name" placeholder="Last name" required>
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">
 							<i class="fa fa-user" aria-hidden="true"></i>
 						</span>
 					</div>
 
-
-						<!----------------------- Designation options  ----------------------------------------------------------- -->
-
 					<div class="wrap-input100 validate-input m-b-16" data-validate = "Designation">
 						
-						<select class="input100" type="" name="designation" placeholder="Designation">
+						<select class="input100" type="" name="designation" placeholder="Designation"  required>
 							<option value="">Select your designation</option>
 							<option value="student">student</option>
 							<option value="teacher">teacher</option>
@@ -141,22 +137,10 @@
 							<i class="fa fa-user-circle-o" aria-hidden="true"></i>
 						</span>
 					</div>
-					<!-- --------------------------------------------current date ------------------------------------------------ -->
-
-					<div class="wrap-input100 validate-input m-b-16" data-validate = "Valid date is expected">
-						
-						<label for="start">Current  date :</label>
-
-                           <input type="date" id="start" name="trip-start" value="2021-02-01" min="2021-02-01" max="2030-12-31">
-
-						
-						
-					</div>
-
 
 					<!-- ------------------------------------------------- -->
 					<div class="wrap-input100 validate-input m-b-16" data-validate = "Valid email is required: ex@abc.xyz">
-						<input class="input100" type="text" name="email" placeholder="Email">
+						<input class="input100" type="text" name="email" placeholder="Email" required>
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">
 							<span class="lnr lnr-envelope"></span>
@@ -164,14 +148,14 @@
 					</div>
 
 					<div class="wrap-input100 validate-input m-b-16" data-validate = "Valid contact is required">
-						<input class="input100" type="text" name="contact" placeholder="Contact">
+						<input class="input100" type="text" name="phoneNumber" placeholder="Contact" required>
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">
 							<i class="fa fa-phone" aria-hidden="true"></i>
 						</span>
 					</div>
 					<div class="wrap-input100 validate-input m-b-16" data-validate = "Required">
-						<input class="input100" type="message" name="address" placeholder="Address">
+						<input class="input100" type="message" name="address" placeholder="Address" required>
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">
 							<i class="fa fa-address-card-o" aria-hidden="true"></i>
@@ -179,23 +163,23 @@
 					</div>
 
 					<div class="wrap-input100 validate-input m-b-16" data-validate = "Required">
-						<input class="input100" type="text" name="organization" placeholder="Name of organization">
+						<input class="input100" type="text" name="organisation" placeholder="Name of organisation" required>
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">
 							<i class="fa fa-sitemap" aria-hidden="true"></i>
 						</span>
 					</div>
 
-					<div class="wrap-input100 validate-input m-b-16" data-validate = "Required">
-						<input class="input100" type="fax" name="fax" placeholder="fax">
+					<!--<div class="wrap-input100 validate-input m-b-16" data-validate = "Required">
+						<input class="input100" type="fax" name="fax" placeholder="fax" required>
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">
 							<i class="fa fa-fax" aria-hidden="true"></i>
 						</span>
-					</div>
+					</div>-->
 
 					<div class="wrap-input100 validate-input m-b-16" data-validate = "Password is required">
-						<input class="input100" type="password" name="password" placeholder="Password">
+						<input class="input100" type="password" name="password" placeholder="Password" required>
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">
 							<span class="lnr lnr-lock"></span>
@@ -203,7 +187,7 @@
 					</div>
 					
 					<div class="wrap-input100 validate-input m-b-16" data-validate = "Re-enter password">
-						<input class="input100" type="password" name="Confpassword" placeholder="Confirm Password">
+						<input class="input100" type="password" name="conf_password" placeholder="Confirm Password" required>
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">
 							<span class="lnr lnr-lock"></span>
@@ -214,14 +198,6 @@
 						<button class="login100-form-btn" type="submit">
 							Register
 						</button>
-					</div>
-
-					<div class="text-center w-full p-t-115">
-						
-
-						<a class="txt1 bo1 hov1" href="#">
-							Sign up now							
-						</a>
 					</div>
 				</form>
 			</div>

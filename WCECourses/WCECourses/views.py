@@ -36,8 +36,8 @@ class register(View):
             return render(request, 'register.html', err)
 
         try:
-            user = User.objects.create_user(username, email, password, first_name=first_name,
-                                            last_name=last_name, )
+            user = User.objects.create_user(username=username, email=email, password=password, first_name=first_name,
+                                            last_name=last_name)
             user.save()
         except:
             err = {}
@@ -70,18 +70,13 @@ class Login(View):
         user = authenticate(username=username, password=password)
         group = None
         if user is not None:
-            if user.is_active:
-                login(request, user)
-                user = Group.objects.filter(user=user)
-                group = user.groups.all()[0].name
-                if group == 'faculty_group':
-                    return redirect('teacher:facultyHome')
-                if group == 'student_group':
-                    return redirect('student:studentHome')
-                else:
-                    return render(request, 'landingPage.html', {})
+            login(request, user)
+            userr = Group.objects.filter(user=user)
+            group = user.groups.all()[0].name
+            if group == 'student_group':
+                return redirect('landingPage')
             else:
-                return render(request, 'login.html', {'error_message': 'Your account has been disabled'})
+                return render(request, 'landingPage.html', {})
         else:
             return render(request, 'login.html', {'error_message': 'Invalid login'})
         return render(request, 'login.html')
