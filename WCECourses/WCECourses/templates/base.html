@@ -7,14 +7,14 @@
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
   <title>{% block title %}
-            Home
+            WCE Courses
       {% endblock %}</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
   <!-- Favicons -->
-  <link href='{%static "landing_static/img/favicon.png"%}'%}' rel="icon">
-  <link href='{%static "landing_static/img/apple-touch-icon.png"%}'%}' rel="apple-touch-icon">
+  <link href="{% static 'landing_static/img/favicon.png'%}" rel="icon">
+  <link href='{%static "landing_static/img/apple-touch-icon.png"%}' rel="apple-touch-icon">
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Dosis:300,400,500,,600,700,700i|Lato:300,300i,400,400i,700,700i" rel="stylesheet">
@@ -44,7 +44,7 @@
   <header id="header" class="fixed-top">
     <div class="container d-flex align-items-center">
 
-      <a href="index.html" class="logo mr-auto"><img src="landing_static/img/wce_logo.png" alt="" class="img-fluid"></a>
+      <a href="index.html" class="logo mr-auto"><img src="{% static 'landing_static/img/wce_logo.png' %}" alt="" class="img-fluid"></a>
       <!-- Uncomment below if you prefer to use text as a logo -->
       <!-- <h1 class="logo mr-auto"><a href="index.html">Butterfly</a></h1> -->
 
@@ -54,19 +54,24 @@
           <li><a href="#about">About</a></li>
           <li><a href="#services">Services</a></li>
           <li><a href="#portfolio">contributor</a></li>
-          <li><a href="#team">Team</a></li>
           <li><a href="#contact">Contact</a></li>
+          {% if user.is_authenticated %}
+            <li><a href="{% url 'logout' %}">Logout</a></li>
+          {% else %}
+          <li><a href="{% url 'Login' %}">Sign-In</a></li>
+          {% endif %}
+          
 
         </ul>
       </nav><!-- .nav-menu -->
     </div>
   </header><!-- End Header -->
 
-<div class="container">
+<!--<div class="container">-->
     {% block content %}
 
     {% endblock %}
-  </div>
+  <!--</div>-->
 
  
 
@@ -85,6 +90,7 @@
 
   <!-- Template Main JS File -->
   <script src="landing_static/js/main.js"></script>
+
 
 </body>
 
