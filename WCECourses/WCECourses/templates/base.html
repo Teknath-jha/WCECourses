@@ -50,15 +50,36 @@
 
       <nav class="nav-menu d-none d-lg-block">
         <ul>
-          <li class="active"><a href="{% url 'landingPage' %}">Home</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#services">Services</a></li>
-          <li><a href="#portfolio">contributor</a></li>
-          <li><a href="#contact">Contact</a></li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'landingPage' %}">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Services</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Contributor</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Contact</a>
+          </li>
           {% if user.is_authenticated %}
-            <li><a href="{% url 'logout' %}">Logout</a></li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              {{user.first_name}} {{user.last_name}}
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="{% url 'profile' %}">Profile</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
+            </div>
+          </li>
           {% else %}
-          <li><a href="{% url 'Login' %}">Sign-In</a></li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'Login' %}">Sign-In</a>
+          </li>
           {% endif %}
           
 
@@ -91,6 +112,7 @@
   <!-- Template Main JS File -->
   <script src="{% static 'landing_static/js/main.js' %}"></script>
 
+  <footer style="text-align: center;">A WCE, Sangli Initiative</footer>
 
 </body>
 
