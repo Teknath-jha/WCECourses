@@ -85,14 +85,14 @@
 					</div>
 
 					<div class="wrap-input100 validate-input m-b-16" data-validate = "Valid contact is required">
-						<input class="input100" type="text" name="phoneNumber" placeholder="{{student.phoneNumber}}">
+						<input class="input100" id="Stones" type="text" name="phoneNumber" placeholder="{{student.phoneNumber}}">
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">
 							<i class="fa fa-phone" aria-hidden="true"></i>
 						</span>
 					</div>
 					<div class="wrap-input100 validate-input m-b-16" data-validate = "Required">
-						<input class="input100" type="message" name="address" placeholder="{{student.address}}">
+						<input class="input100" id="Kane" type="message" name="address" placeholder="{{student.address}}">
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">
 							<i class="fa fa-address-card-o" aria-hidden="true"></i>
@@ -100,7 +100,7 @@
 					</div>
 
 					<div class="wrap-input100 validate-input m-b-16" data-validate = "Required">
-						<input class="input100 organ" type="text" name="organisation" placeholder="{{student.organisation}}">
+						<input class="input100" id="Mane" type="text" name="organisation" placeholder="{{student.organisation}}">
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">
 							<i class="fa fa-sitemap" aria-hidden="true"></i>
@@ -112,15 +112,30 @@
                         Save Changes
                     </button>
                 </div>
-            </form>
-        </div>
+			</form>
+			<br>
+		Want to <a href="{% url 'changePassword' %}"><span style="text-align:center; font-size:1rem; text-decoration:underline">Change Password?</span></a>
+		</div>
+		
     </div>
 </div>
 
-<input type="hidden" name="org" class="org" value={{student.organisation}}>
+<p hidden id="Salah">{{student.organisation}}</p>
+<p hidden id="Dias">{{student.phoneNumber}}</p>
+<p hidden id="Son">{{student.address}}</p>
 
+<script src="{% static 'js/profile.js' %}" type="text/javascript"></script>
 
-<script src="{% static 'js/profile.js' %}"></script>
+	
+<!--===============================================================================================-->	
+<script src="{% static 'vendor/jquery/jquery-3.2.1.min.js' %}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'vendor/bootstrap/js/popper.js' %}"></script>
+	<script src="{% static 'vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'vendor/select2/select2.min.js' %}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'js/main.js' %}"></script>
 
 
 

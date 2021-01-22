@@ -135,4 +135,7 @@ class profile(View):
         err["error_message"] = "Changes Saved Successfully."
         return render(request, template_name, err)
 
-    
+class changePassword(View):
+
+    def get(self, request, template_name = "changepassword.html"):
+        return render(request, template_name)

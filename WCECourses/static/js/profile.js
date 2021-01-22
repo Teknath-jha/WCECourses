@@ -1,4 +1,8 @@
-let orga = document.getElementsByClassName("org").value
-document.getElementsByClassName("organ").value = orga
+let organisation = document.getElementById("Salah").textContent
+document.getElementById("Mane").value = organisation
 
-console.log(orga)
+let phoneNumber = document.getElementById("Dias").textContent
+document.getElementById("Stones").value = phoneNumber
+
+let address = document.getElementById("Son").textContent
+document.getElementById("Kane").value = address
