@@ -8,6 +8,9 @@ from django.urls import reverse_lazy
 from django.shortcuts import render, redirect
 from django.views.generic.base import View
 from student.models import student as Student
+from django.contrib.auth.hashers import check_password
+#from django.contrib.auth import views as auth_views
+from django.contrib.auth.hashers import check_password
 
 class landingPage(View):
     
@@ -139,3 +142,30 @@ class changePassword(View):
 
     def get(self, request, template_name = "changepassword.html"):
         return render(request, template_name)
+
+    def post(self, request, template_name = "changepassword.html"):
+        currPassword = request.POST.get('currentPassword')
+        newPassword = request.POST.get('newPassword')
+        confPassword = request.POST.get('reNewPassword')
+
+        try:
+            matchcheck= check_password(currPassword, request.user.password)
+            if matchcheck is False:
+                err = {}
+                err["error_message"]= "Entered Current Password is Incorrect. Please Retry."
+                return render(request, template_name, err)
+            if newPassword != confPassword:
+                err = {}
+                err["error_message"]= "Entered New Passwords don't Match. Please Retry."
+                return render(request, template_name, err)
+        except:
+            err = {}
+            err["error_message"]= "Refresh the Page to change the Password Again."
+            return render(request, template_name, err)
+
+        U=User.objects.get(username=request.user.username)
+        U.set_password(newPassword)
+        U.save()
+        err = {}
+        err["error_message"]= "Password Changed Successfully."
+        return render(request, template_name, err)
