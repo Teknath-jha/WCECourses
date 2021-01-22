@@ -88,6 +88,51 @@ def logout_user(request):
 class profile(View):
 
     def get(self, request, template_name='profile.html'):
-        return render(request, template_name)
+        stud = Student.objects.filter(user = request.user)
+        stud = stud[0]
+        err = {}
+        err["student"] = stud
+        return render(request, template_name, err)
+
+    def post(self, request, template_name='profile.html'):
+        username = request.POST.get('username')
+        first_name = request.POST.get('first_name')
+        last_name = request.POST.get('last_name')
+        designation = request.POST.get('designation')
+        organisation = request.POST.get('organisation')
+        address = request.POST.get('address')
+        phoneNumber = request.POST.get('phoneNumber')
+        email = request.POST.get('email')
+
+        studentData = Student.objects.filter(user=request.user)
+        studentData = studentData[0]
+        organisation = organisation.rstrip()
+        organisation = organisation.lstrip()
+        address = address.rstrip()
+        address = address.lstrip()
+        phoneNumber = phoneNumber.rstrip()
+        phoneNumber = phoneNumber.lstrip()
+
+        if organisation == "":
+            organisation = studentData.organisation
+        if address == "":
+            address = studentData.address
+        if phoneNumber == "":
+            phoneNumber = studentData.phoneNumber
+
+        # Update the Fields
+        try:
+            Student.objects.filter(user=request.user).update(organisation=organisation, address=address, phoneNumber=phoneNumber)
+        except:
+            err = {}
+            err["error_message"] = "Some Error Occurred. Please Try Again."
+            return render(request, template_name, err)
+        
+        stud = Student.objects.filter(user = request.user)
+        stud = stud[0]
+        err = {}
+        err["student"] = stud
+        err["error_message"] = "Changes Saved Successfully."
+        return render(request, template_name, err)
 
     
