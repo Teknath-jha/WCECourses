@@ -74,7 +74,7 @@ class Login(View):
         group = None
         if user is not None:
             login(request, user)
-            userr = Group.objects.filter(user=user)
+            user = Group.objects.filter(user=user)
             group = user.groups.all()[0].name
             if group == 'student_group':
                 return redirect('landingPage')
@@ -169,3 +169,7 @@ class changePassword(View):
         err = {}
         err["error_message"]= "Password Changed Successfully."
         return render(request, template_name, err)
+
+class about(View):
+    def get(self,request):
+        return render(request,'about.html')
