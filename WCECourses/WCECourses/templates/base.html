@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+{%load static%}
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>{% block title %}
+            WCE Courses
+      {% endblock %}</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="{% static 'landing_static/img/favicon.png'%}" rel="icon">
+  <link href="{%static 'landing_static/img/apple-touch-icon.png'%}" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Dosis:300,400,500,,600,700,700i|Lato:300,300i,400,400i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="{%static 'landing_static/vendor/bootstrap/css/bootstrap.min.css'%}" rel="stylesheet">
+  <link href="{%static 'landing_static/vendor/icofont/icofont.min.css'%}" rel="stylesheet">
+  <link href="{%static 'landing_static/vendor/boxicons/css/boxicons.min.css'%}" rel="stylesheet">
+  <link href="{%static 'landing_static/vendor/venobox/venobox.css'%}" rel="stylesheet">
+  <link href="{%static 'landing_static/vendor/line-awesome/css/line-awesome.min.css' %}" rel="stylesheet">
+  <link href="{%static 'landing_static/vendor/owl.carousel/assets/owl.carousel.min.css'%}" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="{%static 'landing_static/css/style.css' %}"  rel="stylesheet">
+
+  <!-- =======================================================
+  * Template Name: Butterfly - v2.2.0
+  * Template URL: https://bootstrapmade.com/butterfly-free-bootstrap-theme/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="fixed-top">
+    <div class="container d-flex align-items-center">
+
+      <a href="{% url 'landingPage' %}" class="logo mr-auto navbar-brand"><img src="{% static 'landing_static/img/wce_logo.png' %}" alt="" class="img-fluid"></a>
+      <!-- Uncomment below if you prefer to use text as a logo -->
+      <!-- <h1 class="logo mr-auto"><a href="index.html">Butterfly</a></h1> -->
+
+      <nav class="nav-menu d-none d-lg-block">
+        <ul>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'landingPage' %}">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'about' %}">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Services</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Contributor</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Contact</a>
+          </li>
+          {% if user.is_authenticated %}
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              {{user.first_name}} {{user.last_name}}
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="{% url 'profile' %}">Profile</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
+            </div>
+          </li>
+          {% else %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'Login' %}">Sign-In</a>
+          </li>
+          {% endif %}
+          
+
+        </ul>
+      </nav><!-- .nav-menu -->
+    </div>
+  </header><!-- End Header -->
+
+<!--<div class="container">-->
+    {% block content %}
+
+    {% endblock %}
+  <!--</div>-->
+
+ 
+
+  <a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="{% static 'landing_static/vendor/jquery/jquery.min.js' %}"></script>
+  <script src="{% static 'landing_static/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'landing_static/vendor/jquery.easing/jquery.easing.min.js' %}"></script>
+  <script src="{% static 'landing_static/vendor/php-email-form/validate.js' %}"></script>
+  <script src="{% static 'landing_static/vendor/venobox/venobox.min.js' %}"></script>
+  <script src="{% static 'landing_static/vendor/waypoints/jquery.waypoints.min.js' %}"></script>
+  <script src="{% static 'landing_static/vendor/counterup/counterup.min.js' %}"></script>
+  <script src="{% static 'landing_static/vendor/isotope-layout/isotope.pkgd.min.js' %}"></script>
+  <script src="{% static 'landing_static/vendor/owl.carousel/owl.carousel.min.js' %}"></script>
+
+  <!-- Template Main JS File -->
+  <script src="{% static 'landing_static/js/main.js' %}"></script>
+
+  <footer style="text-align: center;">A WCE, Sangli Initiative</footer>
+
+</body>
+
+</html>

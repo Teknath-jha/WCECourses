@@ -1,0 +1,151 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<title>Modiji</title>
+<!--===============================================================================================-->	
+	<link rel="icon" type="image/png" href='{% static "register/images/icons/favicon.ico"%}'/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href='{% static "register/vendor/bootstrap/css/bootstrap.min.css"%}'>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href='{% static "register/fonts/font-awesome-4.7.0/css/font-awesome.min.css"%}'>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href='{% static "register/fonts/Linearicons-Free-v1.0.0/icon-font.min.css"%}'>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href='{% static "register/vendor/animate/animate.css"%}'>
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href='{% static "register/vendor/css-hamburgers/hamburgers.min.css"%}'>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href='{% static "register/vendor/select2/select2.min.css"%}'>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href='{% static "register/css/util.css"%}'>
+	<link rel="stylesheet" type="text/css" href='{% static "register/css/main.css"%}'>
+<!--===============================================================================================-->
+<!--===============================================icons================================================-->
+
+<script src="https://use.fontawesome.com/8490d8a753.js"></script>
+	
+<br>
+<br><br>
+<br>
+	<div class="limiter">
+		<div class="container-login100">
+			<div class="wrap-login100 p-l-50 p-r-50 p-t-77 p-b-30">
+				<form class="login100-form validate-form" action="" method="post" enctype="multipart/form-data">
+					{% csrf_token %}	
+					<span class="login100-form-title p-b-55">
+						Student Registration 
+					</span>
+						<p style="color:#d33f8d">{{error_message}}</p>
+					<div class="wrap-input100 validate-input m-b-16" data-validate = "Valid username is required">
+						<input class="input100" type="text" name="username" placeholder="Username" required>
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-user" aria-hidden="true"></i>
+						</span>
+					</div>
+
+
+					<div class="wrap-input100 validate-input m-b-16" data-validate = "First name is required">
+						<input class="input100" type="text" name="first_name" placeholder="First name" required>
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-user" aria-hidden="true"></i>
+						</span>
+					</div>
+
+
+					<div class="wrap-input100 validate-input m-b-16" data-validate = "Last name is required">
+						<input class="input100" type="text" name="last_name" placeholder="Last name" required>
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-user" aria-hidden="true"></i>
+						</span>
+					</div>
+
+					<div class="wrap-input100 validate-input m-b-16" data-validate = "Designation">
+						
+						<select class="input100" type="" name="designation" placeholder="Designation"  required>
+							<option value="">Select your Designation</option>
+							<option value="student">Student</option>
+							<option value="teacher">Teacher</option>
+							<option value="faculty">Faculty</option>
+							<option value="other">Other</option>
+						  </select>
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-user-circle-o" aria-hidden="true"></i>
+						</span>
+					</div>
+
+					<!-- ------------------------------------------------- -->
+					<div class="wrap-input100 validate-input m-b-16" data-validate = "Valid email is required: ex@abc.xyz">
+						<input class="input100" type="text" name="email" placeholder="Email" required>
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<span class="lnr lnr-envelope"></span>
+						</span>
+					</div>
+
+					<div class="wrap-input100 validate-input m-b-16" data-validate = "Valid contact is required">
+						<input class="input100" type="text" name="phoneNumber" placeholder="Contact" required>
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-phone" aria-hidden="true"></i>
+						</span>
+					</div>
+					<div class="wrap-input100 validate-input m-b-16" data-validate = "Required">
+						<input class="input100" type="message" name="address" placeholder="Address" required>
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-address-card-o" aria-hidden="true"></i>
+						</span>
+					</div>
+
+					<div class="wrap-input100 validate-input m-b-16" data-validate = "Required">
+						<input class="input100" type="text" name="organisation" placeholder="Name of organisation" required>
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-sitemap" aria-hidden="true"></i>
+						</span>
+					</div>
+
+					<div class="wrap-input100 validate-input m-b-16" data-validate = "Password is required">
+						<input class="input100" type="password" name="password" placeholder="Password" required>
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<span class="lnr lnr-lock"></span>
+						</span>
+					</div>
+					
+					<div class="wrap-input100 validate-input m-b-16" data-validate = "Re-enter password">
+						<input class="input100" type="password" name="conf_password" placeholder="Confirm Password" required>
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<span class="lnr lnr-lock"></span>
+						</span>
+					</div>
+
+					<div class="container-login100-form-btn p-t-25">
+						<button class="login100-form-btn" type="submit">
+							Register
+						</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	
+	
+
+	
+<!--===============================================================================================-->	
+	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/bootstrap/js/popper.js"></script>
+	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/select2/select2.min.js"></script>
+<!--===============================================================================================-->
+	<script src="js/main.js"></script>
+
+	{% endblock %}

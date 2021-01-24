@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<!-- ======= Hero Section ======= -->
+<section id="hero" class="d-flex align-items-center">
+
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6 pt-4 pt-lg-0 order-2 order-lg-1 d-flex flex-column justify-content-center">
+        <h1>WCE Courses</h1>
+        <h2>Offering quality education for all to Excel and Innovate</h2>
+        {% if user.is_authenticated is False %}
+        <div><a href="{% url 'Login' %}" class="btn-get-started scrollto">Login</a></div>
+        {% endif %}
+      </div>
+      <div class="col-lg-6 order-1 order-lg-2 hero-img">
+        <img src="landing_staticlanding_staticero-img.png" class="img-fluid" alt="">
+      </div>
+    </div>
+  </div>
+
+</section><!-- End Hero -->
+
+<main id="main">
+
+
+
+
+  <!-- ======= Services Section ======= -->
+  <section id="services" class="services section-bg">
+    <div class="container">
+
+      <div class="section-title">
+        <h2>Courses</h2>
+        <p>Precisely designed courses by field expertise to provide comprehensive knowlegde using modern learning
+          techniques.</p><br>
+      </div>
+      <div class="col text-center">
+        <div class="row">
+          <div class="card mx-auto" style="width: 18rem; margin-right: 2%; margin-bottom: 2%;">
+            <img class="card-img-top" src="{% static 'images/DL.png' %}" alt="Deep Learning: Beginner to Advanced">
+            <div class="card-body">
+              <h5 class="card-title">Deep Learning: Beginner to Advanced</h5>
+              <p class="card-text">Learn to create Deep Learning Algorithms in Python from two Machine Learning & Data
+                Science experts.</p>
+              <div class="col text-center"><a href="#" class="btn btn-primary" style="background: #49b5e7;">Explore</a></div>
+            </div>
+          </div>
+          <div class="card mx-auto" style="width: 18rem;">
+            <img class="card-img-top" src="{% static 'images/PY.jpg' %}" alt="Python For Everybody">
+            <div class="card-body">
+              <h5 class="card-title">Python For Everybody</h5>
+              <p class="card-text">Learn Python like a Professional Start from the basics and go all the way to creating
+                your own applications and games</p>
+              <div class="col text-center"><a href="{% url 'pythonForEverybody' %}" class="btn btn-primary" style="background: #49b5e7;">Explore</a></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section><!-- End Services Section -->
+
+
+
+
+</main><!-- End #main -->
+
+{% endblock %}
