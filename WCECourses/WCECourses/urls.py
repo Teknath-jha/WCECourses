@@ -27,5 +27,6 @@ urlpatterns = [
     path('changePassword', views.changePassword.as_view(), name="changePassword"),
     path('pythonForEverybody', views.pythonForEverybody.as_view(), name="pythonForEverybody"),
     path('about',views.about.as_view(),name="about"),
+    path('deepLearning',views.deepLearning.as_view(),name="deepLearning"),
 
 ]

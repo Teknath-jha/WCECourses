@@ -1,5 +1,5 @@
 import os
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
 from django.views import generic
 from django.views.generic.base import View
 from django.contrib.auth.models import Group
@@ -60,7 +60,7 @@ class register(View):
 
         err = {}
         err['error_message'] = "Registration Successful. Please Login."
-        return render(request, template_name, err)
+        return render(request, template_name,err)
 
 class Login(View):
 
@@ -166,7 +166,14 @@ class changePassword(View):
         U=User.objects.get(username=request.user.username)
         U.set_password(newPassword)
         U.save()
-        return redirect('profile')
+        update_session_auth_hash(request,U)
+        stud = Student.objects.filter(user = request.user)
+        stud = stud[0]
+        err = {}
+        err["student"] = stud
+        err["error_message"] = "Password changed successfully."
+        return render(request, 'profile.html', err)
+        
 
 class pythonForEverybody(View):
 
@@ -176,4 +183,8 @@ class pythonForEverybody(View):
 
 class about(View):
     def get(self, request, template_name = 'about.html'):
+        return render(request, template_name)
+
+class deepLearning(View):
+    def get(self, request, template_name = 'deepLearning.html'):
         return render(request, template_name)
