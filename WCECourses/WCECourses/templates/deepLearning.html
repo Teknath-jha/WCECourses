@@ -357,4 +357,14 @@ You only look once (YOLO)<br>
     </tbody>
     </table>
 </div>
+<div class="col text-center">
+    {% if user.is_authenticated %}
+    <a href="#" class="btn btn-primary" style="background: #49b5e7;">
+    {{message}}</a>
+    {% else %}
+    <a href="{% url 'Login' %}" class="btn btn-primary" style="background: #49b5e7;">
+    {{message}}</a>
+    {%endif%}
+</div>
+<br>
 {% endblock %}

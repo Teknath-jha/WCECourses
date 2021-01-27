@@ -14,6 +14,10 @@ class student(models.Model):
     organisation = models.CharField(max_length=100)
     address = models.CharField(max_length=400)
     phoneNumber = models.IntegerField(null=True)
+    PaidAttendencePython=models.BooleanField(default=False)
+    PaidAttendenceCertificatePython=models.BooleanField(default=False)
+    PaidAttendenceDL=models.BooleanField(default=False)
+    PaidAttendenceCertificateDL=models.BooleanField(default=False)
 
     def __str__(self):
         return self.user.username

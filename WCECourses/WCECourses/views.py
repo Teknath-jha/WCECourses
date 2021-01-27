@@ -178,7 +178,20 @@ class changePassword(View):
 class pythonForEverybody(View):
 
     def get(self, request, template_name = 'pythonForEverybody.html'):
-        return render(request, template_name)
+        message={'message':'message'}
+        try:
+            stud = Student.objects.filter(user = request.user)
+            stud =stud[0]
+            if stud.PaidAttendencePython is True:
+                message['message']='Enrolled without certification'
+            elif stud.PaidAttendenceCertificatePython is True:
+                message['message']='Enrolled for certification'
+            else:
+                message['message']='Enroll'
+        except:
+            message['message']='Login to enroll'
+        return render(request, template_name,message)
+
 
 
 class about(View):
@@ -186,5 +199,22 @@ class about(View):
         return render(request, template_name)
 
 class deepLearning(View):
-    def get(self, request, template_name = 'deepLearning.html'):
-        return render(request, template_name)
+    def get(self, request, template_name = 'deepLearning.html'):    
+        message={'message':'message'}
+        try:
+            stud = Student.objects.filter(user = request.user)
+            stud =stud[0]
+            if stud.PaidAttendenceDL is True:
+                message['message']='Enrolled without certification'
+            elif stud.PaidAttendenceCertificateDL is True:
+                message['message']='Enrolled for certification'
+            else:
+                message['message']='Enroll'
+        except:
+            message['message']='Login to enroll'
+        return render(request, template_name, message)
+        
+
+
+
+
