@@ -1,5 +1,43 @@
 {% extends 'base.html'%}
 {% load static %}
 {% block content %}
+<br>
+<br>
+<br>
+<br>
+<br>
+<h2 style="text-align:center">Course Enrollment Summary:</h2><br>
+
+<p style="text-align:center"><strong>Course Title:</strong> Python for Everybody.</p><br>
+<p style="text-align:center"><strong>Venue:</strong> Online.</p><br>
+<p style="text-align:center"><strong>Date:</strong> 20 Feb to 26 Feb 2021.</p><br><br>
+<p style="text-align:center"><strong>Participant Name:</strong> {{student.user.first_name}} {{student.user.last_name}}.
+</p><br>
+<p style="text-align:center"><strong>Designation:</strong> {{student.designation}}.</p><br>
+<p style="text-align:center"><strong>Organisation:</strong> {{student.organisation}}.</p><br>
+<p style="text-align:center"><strong>Email:</strong> {{student.user.email}}.</p><br>
+<p style="text-align:center"><strong>Phone Number:</strong> {{student.phoneNumber}}.</p><br>
+<br>
+
+<div class="container d-flex justify-content-center">
+    <form action="" method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <div class="col-md-12">
+                <label for="enrollType"><strong>Choose Your Enrollment Type: <span
+                            style="color: red;">*️</span></strong></label>
+                <select name="enrollType" id="semester" class="form-control" required>
+                    <option name="Attendence" value="1">Attendence (₹ 1500)</option>
+                    <option name="AttendenceCertificate" value="2">Attendence + Certificate (₹ 2000)</option>
+                </select>
+            </div>
+        </div>
+        <br>
+        <div class="form-group container d-flex justify-content-center"><input class="btn btn-primary" type="submit" value="Proceed to Payment" style="margin: 2% auto; text-align: center;"></div>
+    </form>
+</div>
+<br>
+<br>
+<br>
 
 {% endblock%}

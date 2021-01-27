@@ -18,6 +18,6 @@ class student(models.Model):
     PaidAttendenceCertificatePython=models.BooleanField(default=False)
     PaidAttendenceDL=models.BooleanField(default=False)
     PaidAttendenceCertificateDL=models.BooleanField(default=False)
-
+    
     def __str__(self):
         return self.user.username

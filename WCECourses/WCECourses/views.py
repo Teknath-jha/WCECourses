@@ -189,7 +189,7 @@ class pythonForEverybody(View):
             else:
                 message['message']='Enroll'
         except:
-            message['message']='Login to enroll'
+            message['message']='Login to Enroll'
         return render(request, template_name,message)
 
 
@@ -211,13 +211,17 @@ class deepLearning(View):
             else:
                 message['message']='Enroll'
         except:
-            message['message']='Login to enroll'
+            message['message']='Login to Enroll'
         return render(request, template_name, message)
 
 class enrollPython(View):
 
     def get(self,request,template_name='summaryPython.html'):
-        return render(request,template_name)
+        stud = Student.objects.filter(user = request.user)
+        stud =stud[0]
+        err = {}
+        err["student"] = stud
+        return render(request,template_name, err)
     
     def post(self,request,template_name='summaryPython.html'):
         enrollType=request.GET('enrollType')
@@ -227,7 +231,11 @@ class enrollPython(View):
 class enrollDL(View):
 
     def get(self,request,template_name='summaryDL.html'):
-        return render(request,template_name)
+        stud = Student.objects.filter(user = request.user)
+        stud =stud[0]
+        err = {}
+        err["student"] = stud
+        return render(request,template_name, err)
     
     def post(self,request,template_name='summaryDL.html'):
         enrollType=request.GET('enrollType')
