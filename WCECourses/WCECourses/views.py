@@ -213,6 +213,26 @@ class deepLearning(View):
         except:
             message['message']='Login to enroll'
         return render(request, template_name, message)
+
+class enrollPython(View):
+
+    def get(self,request,template_name='summaryPython.html'):
+        return render(request,template_name)
+    
+    def post(self,request,template_name='summaryPython.html'):
+        enrollType=request.GET('enrollType')
+        #code after payment successfull
+        return render(request, template_name)
+
+class enrollDL(View):
+
+    def get(self,request,template_name='summaryDL.html'):
+        return render(request,template_name)
+    
+    def post(self,request,template_name='summaryDL.html'):
+        enrollType=request.GET('enrollType')
+        #code after payment successfull
+        return render(request, template_name)
         
 
 

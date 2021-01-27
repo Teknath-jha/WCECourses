@@ -28,5 +28,7 @@ urlpatterns = [
     path('pythonForEverybody', views.pythonForEverybody.as_view(), name="pythonForEverybody"),
     path('about',views.about.as_view(),name="about"),
     path('deepLearning',views.deepLearning.as_view(),name="deepLearning"),
+    path('enrollPython',views.enrollPython.as_view(),name="enrollPython"),
+    path('enrollDL',views.enrollDL.as_view(),name="enrollDL")
 
 ]
