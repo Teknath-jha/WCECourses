@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title%}Enrollment list for Deep Learning{%endblock%}
+{% block content%}
+<br><br><br><br><br>
+<div class="d-flex justify-content-center">
+    <h1><strong>Deep Learning: Basics to Advanced</strong></h1>
+</div>
+<div class="d-flex justify-content-center">
+    <h2><strong>Enrollment List</strong></h2>
+</div>
+<table class="table container">
+    <thead class="thead-light">
+        <tr>
+            <th scope="col">No.</th>
+            <th scope="col">Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Contact no.</th>
+            <th scope="col">Designation</th>
+            <th scope="col">Organisation</th>
+            <th scope="col">Remark</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for participant in attend %}
+        <tr>
+            <th scope="row">{{forloop.counter}}</th>
+            <td>{{participant.user.first_name}} {{participant.user.last_name}}</td>
+            <td>{{participant.user.email}}</td> 
+            <td>{{participant.phoneNumber}}</td>
+            <td>{{participant.designation}}</td>
+            <td>{{participant.organisation}}</td>
+            <td>Attendee</td>
+        </tr>
+        {% endfor %}
+        {% for participant in certificate %}
+        <tr>
+            <th scope="row">{{forloop.counter}}</th>
+            <td>{{participant.user.first_name}} {{participant.user.last_name}}</td>
+            <td>{{participant.user.email}}</td> 
+            <td>{{participant.phoneNumber}}</td>
+            <td>{{participant.designation}}</td>
+            <td>{{participant.organisation}}</td>
+            <td>Attendee + Certificate</td>
+        </tr>
+        {% endfor %}
+        
+    </tbody>
+</table>
+{% endblock%}

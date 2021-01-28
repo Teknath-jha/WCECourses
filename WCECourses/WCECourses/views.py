@@ -252,7 +252,38 @@ def isFaculty(group_name):
 
 class facultyLandingPage(View):
     def get(self, request, template_name="facultyLandingPage.html"):
-        group = request.user.groups.all()[0].name
-        if isFaculty(group) == 0:
+        try:
+            group = request.user.groups.all()[0].name
+            if isFaculty(group) == 0:
+                return render(request, 'login.html')
+            return render(request, template_name)
+        except:
             return render(request, 'login.html')
-        return render(request, template_name)
+
+class enrollListPython(View):
+    def get(self, request, template_name="enrollListPython.html"):
+        try:
+            group = request.user.groups.all()[0].name
+            if isFaculty(group) == 0:
+                return render(request, 'login.html')
+            else:
+                enrollList ={}
+                enrollList['attend']= Student.objects.filter(PaidAttendencePython=True)
+                enrollList['certificate'] = Student.objects.filter(PaidAttendenceCertificatePython=True)
+            return render(request, template_name,enrollList)
+        except:
+            return render(request, 'login.html')
+
+class enrollListDL(View):
+    def get(self, request, template_name="enrollListDL.html"):
+        try:
+            group = request.user.groups.all()[0].name
+            if isFaculty(group) == 0:
+                return render(request, 'login.html')
+            else:
+                enrollList ={}
+                enrollList['attend']= Student.objects.filter(PaidAttendenceDL=True)
+                enrollList['certificate'] = Student.objects.filter(PaidAttendenceCertificateDL=True)
+            return render(request, template_name,enrollList)
+        except:
+            return render(request, 'login.html')
