@@ -29,6 +29,7 @@ urlpatterns = [
     path('about',views.about.as_view(),name="about"),
     path('deepLearning',views.deepLearning.as_view(),name="deepLearning"),
     path('enrollPython',views.enrollPython.as_view(),name="enrollPython"),
-    path('enrollDL',views.enrollDL.as_view(),name="enrollDL")
+    path('enrollDL',views.enrollDL.as_view(),name="enrollDL"),
+    path('facultyHome', views.facultyLandingPage.as_view(), name="facultyLandingPage"),
 
 ]

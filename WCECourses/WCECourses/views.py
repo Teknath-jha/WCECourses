@@ -78,6 +78,8 @@ class Login(View):
             group = user.groups.all()[0].name
             if group == 'student_group':
                 return redirect('landingPage')
+            elif group == 'faculty_group':
+                return redirect('facultyLandingPage')
             else:
                 return render(request, 'landingPage.html', {})
         else:
@@ -242,7 +244,15 @@ class enrollDL(View):
         #code after payment successfull
         return render(request, template_name)
         
+def isFaculty(group_name):
+    if group_name == 'faculty_group':
+        return 1
+    else:
+        return 0
 
-
-
-
+class facultyLandingPage(View):
+    def get(self, request, template_name="facultyLandingPage.html"):
+        group = request.user.groups.all()[0].name
+        if isFaculty(group) == 0:
+            return render(request, 'login.html')
+        return render(request, template_name)
