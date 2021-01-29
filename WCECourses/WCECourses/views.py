@@ -8,6 +8,7 @@ from django.urls import reverse_lazy
 from django.shortcuts import render, redirect
 from django.views.generic.base import View
 from student.models import student as Student
+from student.models import enrolledStudent
 from django.contrib.auth.hashers import check_password
 #from django.contrib.auth import views as auth_views
 from django.contrib.auth.hashers import check_password
@@ -20,7 +21,22 @@ client = razorpay.Client(auth=("rzp_test_7fzGeMVYeIW8M6", sam+veda))
 class landingPage(View):
     
     def get(self, request, template_name='landingPage.html'):
-        return render(request, template_name)
+        try:
+            stud = Student.objects.filter(user = request.user)
+            stud = stud[0]
+            message={'message':'message'}
+            if (stud.PaidAttendenceCertificateDL or stud.PaidAttendenceDL)  and  (stud.PaidAttendencePython   or stud.PaidAttendenceCertificatePython):
+                    message['message']= 'PyandDL'
+            elif (stud.PaidAttendenceCertificateDL or stud.PaidAttendenceDL) :
+                    message['message']= 'DL'
+            elif (stud.PaidAttendencePython   or stud.PaidAttendenceCertificatePython):
+                    message['message']= 'python'
+            else :
+                message['message']= 'nothing'
+        except:
+            message={'message':'message'}
+            message['message']= 'nothing'
+        return render(request, template_name, message)
 
 class register(View):
 
@@ -232,8 +248,47 @@ class enrollPython(View):
     
     def post(self,request,template_name='summaryPython.html'):
         enrollType=request.POST.get('enrollType')
-        #code after payment successfull
-        return render(request, template_name)
+        DATA ={}
+        stud = Student.objects.filter( user= request.user)
+        stud =stud[0]
+        if enrollType == '1':
+            DATA["amount"]=150000
+        else:
+            DATA["amount"]=200000
+        DATA["currency"]="INR"
+        DATA["payment_capture"]=1
+        payment = client.order.create(data=DATA)
+
+        return render(request, template_name,{'student':stud,'payment':payment,'type':enrollType})
+
+from django.views.decorators.csrf import csrf_exempt 
+
+class successPython(View):
+    @csrf_exempt
+    def post(self, request):
+        print(request.POST)
+        err = {}
+        orderID = request.POST.get('razorpay_order_id')
+        paymentID = request.POST.get('razorpay_payment_id')
+        enrollmentType = request.POST.get('enrollmentType')
+        signature = request.POST.get('razorpay_signature')
+        if enrollmentType == '1':
+            Student.objects.filter(user=request.user).update(PaidAttendencePython = True)
+            stud = Student.objects.filter(user=request.user)
+            stud =stud[0]
+            enstud = enrolledStudent(enrolled_stud=stud,Amount='1500',OrderId=orderID,PaymentId=paymentID,Signature=signature)
+            enrollType = "Python for Everybody: Attendence"
+        else:
+            Student.objects.filter(user=request.user).update(PaidAttendenceCertificatePython = True)
+            stud = Student.objects.filter(user=request.user)
+            stud =stud[0]
+            enstud = enrolledStudent(enrolled_stud=stud,Amount='2000',OrderId=orderID,PaymentId=paymentID,Signature=signature)
+            enrollType = "Python for Everybody: Attendence + Certificate"
+        enstud.save()
+        err["orderID"] = orderID
+        err["paymentID"] = paymentID
+        err["enrollType"] = enrollType
+        return render(request, 'successPython.html', err)
 
 class enrollDL(View):
 
@@ -250,9 +305,9 @@ class enrollDL(View):
         stud = Student.objects.filter(user = request.user)
         stud =stud[0]
         if enrollType == '1':
-            DATA["amount"] = 150000
+            DATA["amount"] = 250000
         else:
-            DATA["amount"] = 200000
+            DATA["amount"] = 300000
 
         DATA["currency"] = "INR"
         DATA["payment_capture"] = 1
@@ -274,12 +329,20 @@ class successDL(View):
         orderID = request.POST.get('razorpay_order_id')
         paymentID = request.POST.get('razorpay_payment_id')
         enrollmentType = request.POST.get('enrollmentType')
-        if enrollmentType == 1:
+        signature = request.POST.get('razorpay_signature')
+        if enrollmentType == '1':
             Student.objects.filter(user=request.user).update(PaidAttendenceDL = True)
+            stud = Student.objects.filter(user=request.user)
+            stud =stud[0]
+            enstud = enrolledStudent(enrolled_stud=stud,Amount='2500',OrderId=orderID,PaymentId=paymentID,Signature=signature)
             enrollType = "Deep Learning: Attendence"
         else:
             Student.objects.filter(user=request.user).update(PaidAttendenceCertificateDL = True)
+            stud = Student.objects.filter(user=request.user)
+            stud =stud[0]
+            enstud = enrolledStudent(enrolled_stud=stud,Amount='3000',OrderId=orderID,PaymentId=paymentID,Signature=signature)
             enrollType = "Deep Learning: Attendence + Certificate"
+        enstud.save()
         err["orderID"] = orderID
         err["paymentID"] = paymentID
         err["enrollType"] = enrollType

@@ -21,3 +21,14 @@ class student(models.Model):
     
     def __str__(self):
         return self.user.username
+
+class enrolledStudent(models.Model):
+    Amount     = models.CharField(max_length=100)
+    OrderId    = models.CharField(max_length=100)
+    PaymentId  = models.CharField(max_length=100)
+    Signature  = models.CharField(max_length=100)
+    TimeStamp  = models.DateTimeField(auto_now_add=True)    # ye bydefault bhi milta hai no need of this
+    enrolled_stud = models.ForeignKey(student, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.enrolled_stud.user.username

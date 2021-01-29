@@ -43,7 +43,11 @@
             <div class="card-body">
               <h5 class="card-title">Deep Learning Basic to Advances</h5>
               <p class="card-text"><i>15 Feb to 28 Feb 2021</i><br><br>Starting from the basics of Neural Networks, powerful architectures and techniques in deep learning are introduced, such as Recurrent Neural Nets Convolution Neural Nets, Adversarial Nets, and Generative model</p>
+              {%         if  message == "PyandDL"  or    message == "DL" %}
+              <div class="col text-center"><a href="{% url 'deepLearning' %}" class="btn btn-primary" style="background: #49b5e7;">Enrolled</a></div>
+              {%  else  %}
               <div class="col text-center"><a href="{% url 'deepLearning' %}" class="btn btn-primary" style="background: #49b5e7;">Explore</a></div>
+              {%   endif   %}
             </div>
           </div>
           <div class="card mx-auto" style="width: 18rem;">
@@ -51,7 +55,13 @@
             <div class="card-body">
               <h5 class="card-title">Python For Everybody</h5>
               <p class="card-text"><i>20 Feb to 26 Feb 2021</i><br><br>Provides in depth knowledge of basic concepts of python programming language, Python standard libraries such as Numpy and Pandas, Python's object oriented features and solution for any real life problem using Python.</p>
+              {%    if  message == "PyandDL"  or    message == "Python" %}
+
+              <div class="col text-center"><a href="{% url 'pythonForEverybody' %}" class="btn btn-primary" style="background: #49b5e7;">Enrolled</a></div>
+              {%    else       %}
               <div class="col text-center"><a href="{% url 'pythonForEverybody' %}" class="btn btn-primary" style="background: #49b5e7;">Explore</a></div>
+
+              {%    endif   %}
             </div>
           </div>
         </div>

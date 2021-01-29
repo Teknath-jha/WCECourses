@@ -333,16 +333,28 @@
             </tr>
         </tbody>
     </table>
-    <br>
+    <br><br>
 <div class="col text-center">
-    {% if user.is_authenticated %}
+    {% if message == "Enroll" %}
     <a href="{% url 'enrollPython' %}" class="btn btn-primary" style="background: #49b5e7; padding: 1% 3%">
     {{message}}</a>
-    {% else %}
+    {% elif message == "Login to Enroll" %}
     <a href="{% url 'Login' %}" class="btn btn-primary" style="background: #49b5e7; padding: 1% 3%">
     {{message}}</a>
+    {% elif message == "Enrolled without certification" %}
+    <div class="d-flex justify-content-center">
+        <h4><strong>You Have Already Enrolled for this Course without Certification</strong></h4>
+        <br>
+    </div>
+    {% elif message == "Enrolled for certification" %}
+    <div class="d-flex justify-content-center">
+        <h4><strong>You Have Already Enrolled for this Course with Certification</strong></h4>
+        <br>
+    </div>
     {%endif%}
 </div>
-<br>
+<br><br>
+
+
     
     {% endblock %}
