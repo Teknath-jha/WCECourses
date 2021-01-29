@@ -20,6 +20,7 @@
 <p style="text-align:center"><strong>Phone Number:</strong> {{student.phoneNumber}}</p><br>
 <br>
 
+{% if not payment %}
 <div class="container d-flex justify-content-center">
     <form action="" method="post">
         {% csrf_token %}
@@ -37,6 +38,32 @@
         <div class="form-group container d-flex justify-content-center"><input class="btn btn-primary" type="submit" value="Proceed to Payment" style="margin: 2% auto; text-align: center;"></div>
     </form>
 </div>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+{% endif %}
+
+{% if payment %}
+<div class="container mx-auto text-center mt-4" v-if="name && amount">
+
+    <form action="successDL" method="POST">
+        {% csrf_token %}
+        <script
+            src="{% static 'razorPay.js'%}"
+            data-key="rzp_test_7fzGeMVYeIW8M6"
+            data-currency="INR"
+            data-order_id="{{ payment.id }}"
+            data-buttontext="Pay Enrollment Fees with Razorpay"
+            data-name="WCE Sangli"
+            data-description="Deep Learning Course Enrollment"
+            data-image="https://mir-s3-cdn-cf.behance.net/projects/404/96f391100297239.Y3JvcCw4MDgsNjMyLDAsMA.png"
+            data-prefill.name="{{user.first_name}}"
+           
+            data-theme.color="#eeeeee"
+        ></script>
+        <input type="hidden" custom="Hidden Element" name="hidden">
+        <input type="hidden" name="enrollmentType"  value="{{type}}">
+        </form>
+    </div>
+{% endif %}
 <br>
 <br>
 <br>

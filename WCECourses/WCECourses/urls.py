@@ -33,4 +33,5 @@ urlpatterns = [
     path('facultyHome', views.facultyLandingPage.as_view(), name="facultyLandingPage"),
     path('enrollmentForPython', views.enrollListPython.as_view(), name="enrollListPython"),
     path('enrollmentForDL', views.enrollListDL.as_view(), name="enrollListDL"),
+    path('successDL', views.successDL.as_view(), name="successDL"),
 ]

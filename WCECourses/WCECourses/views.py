@@ -11,6 +11,11 @@ from student.models import student as Student
 from django.contrib.auth.hashers import check_password
 #from django.contrib.auth import views as auth_views
 from django.contrib.auth.hashers import check_password
+import razorpay
+import shortuuid
+sam = "e6am76KiAsQyUO8"
+veda = "sZYE2N39B"
+client = razorpay.Client(auth=("rzp_test_7fzGeMVYeIW8M6", sam+veda))
 
 class landingPage(View):
     
@@ -226,7 +231,7 @@ class enrollPython(View):
         return render(request,template_name, err)
     
     def post(self,request,template_name='summaryPython.html'):
-        enrollType=request.GET('enrollType')
+        enrollType=request.POST.get('enrollType')
         #code after payment successfull
         return render(request, template_name)
 
@@ -240,9 +245,45 @@ class enrollDL(View):
         return render(request,template_name, err)
     
     def post(self,request,template_name='summaryDL.html'):
-        enrollType=request.GET('enrollType')
-        #code after payment successfull
-        return render(request, template_name)
+        enrollType=request.POST.get('enrollType')
+        DATA = {}
+        stud = Student.objects.filter(user = request.user)
+        stud =stud[0]
+        if enrollType == '1':
+            DATA["amount"] = 150000
+        else:
+            DATA["amount"] = 200000
+
+        DATA["currency"] = "INR"
+        DATA["payment_capture"] = 1
+
+        payment = client.order.create(data=DATA)
+
+        stud = Student.objects.filter(user = request.user)
+        stud =stud[0]
+        
+        return render(request, template_name, {"payment": payment, "student": stud, "type": enrollType})
+
+from django.views.decorators.csrf import csrf_exempt 
+
+class successDL(View):
+    @csrf_exempt
+    def post(self, request):
+        print(request.POST)
+        err = {}
+        orderID = request.POST.get('razorpay_order_id')
+        paymentID = request.POST.get('razorpay_payment_id')
+        enrollmentType = request.POST.get('enrollmentType')
+        if enrollmentType == 1:
+            Student.objects.filter(user=request.user).update(PaidAttendenceDL = True)
+            enrollType = "Deep Learning: Attendence"
+        else:
+            Student.objects.filter(user=request.user).update(PaidAttendenceCertificateDL = True)
+            enrollType = "Deep Learning: Attendence + Certificate"
+        err["orderID"] = orderID
+        err["paymentID"] = paymentID
+        err["enrollType"] = enrollType
+        return render(request, 'successDL.html', err)
         
 def isFaculty(group_name):
     if group_name == 'faculty_group':
