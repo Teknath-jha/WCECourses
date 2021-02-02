@@ -391,3 +391,31 @@ class enrollListDL(View):
             return render(request, template_name,enrollList)
         except:
             return render(request, 'login.html')
+
+class paymentDetailsPy(View):
+    def get(self,request,stud,template_name="paymentDetailsPy.html"):
+        thatStud = User.objects.filter(email = stud)
+        thatStud = thatStud[0]
+        thatStud = Student.objects.filter(user=thatStud)
+        thatStud = thatStud[0]
+        enrolled_stud = enrolledStudent.objects.filter(enrolled_stud=thatStud)
+        for i in enrolled_stud:
+            if i.Amount=="1500" or i.Amount=="2000":
+                student=i
+        enroll_details={}
+        enroll_details['student']=student
+        return render(request,template_name, enroll_details)
+
+class paymentDetailsDL(View):
+    def get(self,request,stud,template_name="paymentDetailsDL.html"):
+        thatStud = User.objects.filter(email = stud)
+        thatStud = thatStud[0]
+        thatStud = Student.objects.filter(user=thatStud)
+        thatStud = thatStud[0]
+        enrolled_stud = enrolledStudent.objects.filter(enrolled_stud=thatStud)
+        for i in enrolled_stud:
+            if i.Amount=="2500" or i.Amount=="3000":
+                student=i
+        enroll_details={}
+        enroll_details['student']=student
+        return render(request,template_name, enroll_details)

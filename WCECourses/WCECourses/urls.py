@@ -35,4 +35,6 @@ urlpatterns = [
     path('enrollmentForDL', views.enrollListDL.as_view(), name="enrollListDL"),
     path('successDL', views.successDL.as_view(), name="successDL"),
     path('successPython', views.successPython.as_view(), name="successPython"),
+    path('paymentDetailsPy/<str:stud>', views.paymentDetailsPy.as_view(), name="paymentDetailsPy"),
+   path('paymentDetailsDL/<str:stud>', views.paymentDetailsDL.as_view(), name="paymentDetailsDL"),
 ]

@@ -1,0 +1,19 @@
+{% extends 'base.html'%}
+{% load static %}
+{% block title %}Payment Details{% endblock %}
+{% block content %}
+<br>
+<br>
+<br>
+<br>
+<br>
+<h2 style="text-align:center">Name: {{student.enrolled_stud.user.first_name}} {{student.enrolled_stud.user.last_name}}</h2><br>
+<h2 style="text-align:center">Payment ID: {{student.PaymentId}}</h2><br>
+<h2 style="text-align:center">Timestamp: {{student.TimeStamp}}</h2><br>
+<h2 style="text-align:center">Amount: {{student.Amount}}</h2><br>
+<br><br><br>
+<br>
+<br>
+<br>
+
+{% endblock%}
